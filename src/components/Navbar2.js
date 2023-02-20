@@ -8,7 +8,6 @@ import { faker } from '@faker-js/faker';
 const defaultPage = () => {
   const navLinkClasses = classNames('px-1 text-light text-decoration-none');
   const activeStyleFn = ({ isActive }) => ({ fontWeight: isActive ? '' : 'lighter', borderBottom: isActive ? '3px solid gold' : '' });
-
   return (
     <div className=' d-flex justify-content-center' style={{ backgroundColor: '#34495E' }}>
       <NavLink className={navLinkClasses} style={activeStyleFn} to="/carts"><div className='py-2 px-3'>CARTS</div></NavLink>

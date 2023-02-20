@@ -17,7 +17,7 @@ export default function TrackOptions() {
     });
 
     const handleSpringChange = (event)=>{
-        dispatch(updateSpring(event));
+        dispatch(updateSpring(event.target.value));
     }
     const handleTrackSizeChange = (event)=>{
         dispatch(updateTrackSize(event.target.value));

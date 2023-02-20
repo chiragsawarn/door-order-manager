@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {addCart} from '../index';
 import { resetForms } from "../actions/resetForms";
 
 const init = {
@@ -33,9 +32,6 @@ const windowOptionsFormSlice = createSlice({
         }
     },
     extraReducers(builder){
-        builder.addCase(addCart, (state, action)=>{
-            return init;
-        })
         builder.addCase(resetForms, (state, action)=>{
             return init;
         })

@@ -6,6 +6,7 @@ import ActionBar from './ActionBar';
 import { faker } from '@faker-js/faker';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { useSelector } from 'react-redux';
 
 export default function ConfigureNewDoor3() {
     const date = new Date();
@@ -13,11 +14,16 @@ export default function ConfigureNewDoor3() {
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dateSimplified = dateAfter5days.toLocaleDateString("en-US", options);
 
+    const productDesc = useSelector((state) => {
+        if(state.carts.length === 0) return "10 x 10 CAN211 CC W1 COMPLETE DOOR INTELLICORE OBSCURE, 5TH GENERATION FINISH WALDER DOOR";
+        return `${state.carts[state.carts.length-1].layoutOptions.assemblyType} ${state.carts[state.carts.length-1].layoutOptions.measureSize.height.feet} x ${state.carts[state.carts.length-1].layoutOptions.measureSize.width.feet}, ${state.carts[state.carts.length-1].layoutOptions.windCode} ${state.carts[state.carts.length-1].layoutOptions.design} ${state.carts[state.carts.length-1].layoutOptions.color}`;
+    });
+
     return (
         <>
             <div className='col-md-8 mx-auto mt-3' style={{ height: "100vh" }}>
                 <section className='p-4 bg-light shadow-sm rounded'>
-                    <h5 className='fw-bold'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dolor fugit sit veniam id quasi, debitis consectetur possimus. Quidem quaerat modi ea ad soluta ab, laboriosam velit provident suscipit sapiente.</h5>
+                    <h5 className='fw-bold'>{productDesc}</h5>
                     <div className='text-muted'>
                         <h6 className='m-0'>Job Name: Front door with glass</h6>
                         <h6 className='m-0'>Product #CWD . Garage Door</h6>

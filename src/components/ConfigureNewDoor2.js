@@ -6,9 +6,32 @@ import OtherOptions from './OtherOptions';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ProgressBar from './ProgressBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCart, updateLastCart } from '../store';
+import { faker } from '@faker-js/faker';
 
 
 export default function ConfigureNewDoor2() {
+    
+    const cartContent = useSelector((state)=>{
+        const fName = faker.name.firstName();
+        return {
+            layoutOptions:state.layoutOptions,
+            windowOptions:state.windowOptions,
+            trackOptions:state.trackOptions,
+            otherOptions:state.otherOptions,
+            expiry: Math.round(Math.random()*90),
+            creator: `${fName} ${faker.name.lastName()}`,
+            name: `${fName}_${Math.round(Math.random()*10000)}`
+        }
+    })
+
+    const dispatch = useDispatch();
+    const isFormEditable = useSelector(state => state.isFormEditable);
+    const handleSubmit = ()=>{
+        (isFormEditable) ? dispatch(updateLastCart(cartContent)) : dispatch(addCart(cartContent));
+    }
+
     return (
         <>
             <ProgressBar />
@@ -24,7 +47,7 @@ export default function ConfigureNewDoor2() {
                         </Button>
                     </Link>
                     <Link to="/configure-new-door-3" className='me-md-3 col-6 col-md-2 col-xs-1' style={{boxSizing:"border-box"}}>
-                        <Button className='my-3 w-100' variant="dark" style={{ backgroundColor: "#66332B"}}>
+                        <Button onClick={handleSubmit} className='my-3 w-100' variant="dark" style={{ backgroundColor: "#66332B"}}>
                             ADD TO CART
                         </Button>
                     </Link>

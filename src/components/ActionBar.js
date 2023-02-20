@@ -6,7 +6,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {resetForms} from '../store/index';
+import {resetForms, deleteLastCart, setIsFormEditable} from '../store/index';
 
 export default function ActionBar() {
     const [favourite, setFavourite] = useState(false);
@@ -14,6 +14,11 @@ export default function ActionBar() {
 
     const handleDelete = ()=>{
         dispatch(resetForms());
+        dispatch(deleteLastCart());
+    }
+
+    const handleEdit = ()=>{
+        dispatch(setIsFormEditable(true));
     }
 
     return (
@@ -22,7 +27,7 @@ export default function ActionBar() {
                 {(favourite) ? <FavoriteOutlinedIcon className='mx-2' /> : <FavoriteBorderOutlinedIcon className='mx-2' />}
                 <span>FAVOURITES</span>
             </div>
-            <Link to="/configure-new-door-2" className='col-3 border p-2'>
+            <Link to="/configure-new-door-2" onClick={handleEdit} className='col-3 border p-2' style={{textDecoration:"none", color: "#66332B"}}>
                 <EditIcon className='mx-2' />
                 <span>EDIT</span>
             </Link>
