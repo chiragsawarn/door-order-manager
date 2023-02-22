@@ -13,7 +13,9 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
+        <Route index element={<NoData message={"Click on carts to get started!"} />} />
         <Route path='/carts' element={<Carts />}>
+          <Route index element={<NoData message={"Active carts has some preloaded data you can try searching and sorting on!"} />} />
           <Route path='/carts/active-carts' element={<ActiveCarts />} />
           <Route path='/carts/archived-carts' element={<NoData />} />
         </Route>
